@@ -3,7 +3,7 @@ import axios from 'axios';
 export function upload(file) {
   console.log('upload util received file', file);
   const params = {
-    api_key: '197549165724496',
+    api_key: apiKey(),
     timestamp: Math.floor(+ new Date() / 1000),
     //callback: 'http://localhost:3000/cloudinary_cors.html'
   }
@@ -19,8 +19,16 @@ function signParams(params) {
   return axios.get('/signature', { params });
 }
 
+function apiKey() {
+  return '197549165724496';
+}
+
+function cloudName() {
+  return 'dpquc2ssm';
+}
+
 function cloudinaryUpload(file, signedParams) {
-  axios.post('http://api.cloudinary.com/v1_1/dpquc2ssm/image/upload', file, {
+  axios.post(`http://api.cloudinary.com/v1_1/${cloudName()}/image/upload`, file, {
     params: signedParams,
     headers: {
       'X-Requested-With': 'XMLHttpRequest'

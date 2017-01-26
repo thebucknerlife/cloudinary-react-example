@@ -1,25 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Example app of a cloudinary CORS issue.
 
-Things you may want to cover:
+# Setup
 
-* Ruby version
+1. Create a new `.env` file by copying `.env.sample` and adding the required Cloudinary secret.
+2. Update the two functions in `client/app/bundles/HelloWorld/utils/upload.js` with Cloudinary cloud name and Cloudinary api key.
 
-* System dependencies
+You should be good to go!
 
-* Configuration
+# Startup
 
-* Database creation
+From project root, start the server then open the React homepage.
 
-* Database initialization
+```
+$ foreman start -f Procfile.dev
+$ open http://localhost:3000/hello_world
+```
 
-* How to run the test suite
+# Recreate Issue
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Open `http://localhost:3000/hello_world` in Chrome.
+2. Open javascript console.
+3. Drag an image file into the dropzone.
+4. Once file upload is finished, you should see a `No 'Access-Control-Allow-Origin' header is present on the requested resource` error in the javascript console.
 
-* Deployment instructions
 
-* ...
-# cloudinary-react-example
