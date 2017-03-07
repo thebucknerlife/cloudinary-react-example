@@ -5,7 +5,7 @@ export function upload(file) {
   const params = {
     api_key: apiKey(),
     timestamp: Math.floor(+ new Date() / 1000),
-    //callback: 'http://localhost:3000/cloudinary_cors.html'
+    callback: 'http://localhost:3000/cloudinary_cors.html'
   }
 
   signParams(params)
@@ -28,7 +28,10 @@ function cloudName() {
 }
 
 function cloudinaryUpload(file, signedParams) {
-  axios.post(`http://api.cloudinary.com/v1_1/${cloudName()}/image/upload`, file, {
+  const data = new FormData();
+  data.append('file', file);
+
+  axios.post(`http://api.cloudinary.com/v1_1/${cloudName()}/image/upload`, data, {
     params: signedParams,
     headers: {
       'X-Requested-With': 'XMLHttpRequest'
